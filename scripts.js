@@ -33,6 +33,7 @@ var player;
 var berries;
 var bushels;
 var test;
+var music;
 var game = new Phaser.Game(config1);
 
 
@@ -62,10 +63,18 @@ function preload ()
         this.load.image('test2', 'test2.png');
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
         // this.load.spritesheet('forward_sprite', 'assets/forward_sprite.png', 'assets', { frameWidth: 91, frameHeight: 203 });
+        this.load.audio('theme', ['theme.wav']);
     }
 
 function create ()
     {
+
+        // music
+        var music = this.sound.add('theme');
+
+        music.loop = true;
+        music.play();
+
         // webfont 
         var add = this.add;
         var input = this.input;
