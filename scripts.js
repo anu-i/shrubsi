@@ -135,6 +135,8 @@ function create ()
         // Display the game stats
         info = this.add.text(10, 10, '', { fontFamily: 'Inconsolata', fontSize:42, color: '#000000' });
 
+        info.setDepth(2);
+
         // timer = this.time.addEvent({ delay: 10000, callback: this.gameOver, callbackScope: this });
     
         berries = 0;
