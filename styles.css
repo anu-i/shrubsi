@@ -1,5 +1,87 @@
+html{
+	min-height: 100%;
+	overflow: hidden;
+  }
+
 body {
 	margin: 0;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
+	background: rgb(18, 18, 18);
+
 }
+
+p {
+	overflow: hidden; /* Ensures the content is not revealed until the animation */
+	/* border-right: .15em solid orange; The typwriter cursor */
+	white-space: nowrap; /* Keeps the content on a single line */
+	margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+	/* letter-spacing: .15em; Adjust as needed */
+	animation: 
+	  typing 3.5s steps(40, end),
+	  blink-caret .75s step-end infinite;
+}
+
+
+#left {
+	background-color: rgba(149, 129, 115, 0.695);
+	border: 2em;
+	border-radius: 1em;
+	border-color: rgb(255, 0, 115);
+	height: 350px;
+	color: azure;
+	margin-top: 20px;
+	padding: 10px;
+	font-family: 'Chakra Petch', sans-serif;
+}
+
+#game {
+	order: 2
+}
+
+#right {
+	text-align: right;
+	color: azure;
+	margin-top: 20px;
+	order: 3;
+	font-family: 'Inconsolata', monospace;
+}
+
+.arrow {
+	border: solid rgb(255, 11, 11);
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+  }
+  
+  .right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
+  }
+  
+  .up {
+	transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+  }
+  
+  .down {
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+  }
+
+/* The typing effect */
+@keyframes typing {
+	from { width: 0 }
+	to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect
+  @keyframes blink-caret {
+	from, to { border-color: transparent }
+	50% { border-color: orange; }
+  } */
