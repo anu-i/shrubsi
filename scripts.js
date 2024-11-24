@@ -100,9 +100,9 @@ function create ()
 
         //  Mash 4 images together to create our background
         this.add.image(0, 0, 'bg').setOrigin(0);
-        this.add.image(1920, 0, 'bg').setOrigin(0).setFlipX(true);
-        this.add.image(0, 1080, 'bg').setOrigin(0).setFlipY(true);
-        this.add.image(1920, 1080, 'bg').setOrigin(0).setFlipX(true).setFlipY(true);
+        this.add.image(3840, 0, 'bg').setOrigin(0).setFlipX(true);
+        this.add.image(0, 2160, 'bg').setOrigin(0).setFlipY(true);
+        this.add.image(3840, 2160, 'bg').setOrigin(0).setFlipX(true).setFlipY(true);
         this.add.image(0, 0, 'bushels').setOrigin(0);
         this.add.image(1920, 0, 'bushels').setOrigin(0).setFlipX(true);
         this.add.image(0, 1080, 'bushels').setOrigin(0).setFlipY(true);
