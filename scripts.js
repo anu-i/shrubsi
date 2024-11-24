@@ -95,7 +95,7 @@ function create ()
         
 
         //  Set the camera and physics bounds to be the size of 4x4 bg images
-        this.cameras.main.setBounds(0, 0, 1920 * 2, 1080 * 2);
+        this.cameras.main.setBounds(0, 0, 120 * 2, 180 * 2);
         this.physics.world.setBounds(0, 0, 1920 * 2, 1080 * 2);
 
         //  Mash 4 images together to create our background
