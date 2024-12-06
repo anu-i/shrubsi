@@ -55,14 +55,14 @@ function init ()
 function preload ()
     {
         this.load.image('bg', 'bg.jpg');
-        this.load.image('block', 'maintest.png');
+        // this.load.image('block', 'maintest.png');
         this.load.image('food', 'food.png');
         this.load.image('poison', 'poison.png');
         this.load.image('bushels', 'bushels.png');
         this.load.image('test', 'test.png');
         this.load.image('test2', 'test2.png');
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
-        // this.load.spritesheet('forward_sprite', 'assets/forward_sprite.png', 'assets', { frameWidth: 91, frameHeight: 203 });
+        this.load.spritesheet('girl', 'reworked/Sprites/idle.png', { frameWidth: 32, frameHeight: 32 });
         this.load.audio('theme', ['theme.wav']);
     }
 
@@ -113,20 +113,22 @@ function create ()
  
 
         // player
-        player = this.physics.add.image(400, 300, 'block');
+        // player = this.physics.add.image(400, 300, 'block');
 
-        // player = this.physics.add.sprite(400, 300, 'forward_sprite');
+        player = this.physics.add.sprite(32, 32, 'girl');
 
         player.setCollideWorldBounds(true);
 
         // player animation
 
-        // this.anims.create({
-        //     key: 'down',
-        //     frames: this.anims.generateFrameNumbers('block', { start: 0, end: 3 }),
-        //     frameRate: 10,
-        //     repeat: -1
-        //  });
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('girl', { start: 1, end: 12 }),
+            frameRate: 8,
+            repeat: -1
+         });
+
+        player.anims.play('idle');
 
      
         this.cameras.main.startFollow(player, true, 0.05, 0.05);
