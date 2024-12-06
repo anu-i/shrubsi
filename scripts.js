@@ -62,7 +62,7 @@ function preload ()
         this.load.image('test', 'test.png');
         this.load.image('test2', 'test2.png');
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
-        this.load.spritesheet('girl', 'reworked/Sprites/idle.png', { frameWidth: 128, frameHeight: 128 });
+        this.load.spritesheet('girl', 'reworked/Sprites/idle.png', { frameWidth: 64, frameHeight: 127 });
         this.load.audio('theme', ['theme.wav']);
     }
 
