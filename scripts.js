@@ -63,6 +63,7 @@ function preload ()
         this.load.image('test2', 'test2.png');
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
         this.load.spritesheet('girl', 'reworked/Sprites/idle.png', { frameWidth: 64, frameHeight: 127 });
+        this.load.spritesheet('girlrun', 'reworked/Sprites/run.png', { frameWidth: 64, frameHeight: 127 });
         this.load.audio('theme', ['theme.wav']);
     }
 
@@ -129,6 +130,14 @@ function create ()
             repeat: -1
          });
          player.anims.play('idle');
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('girlrun', { start: 1, end: 14 }),
+            frameRate: 8,
+            repeat: -1
+         });
+         player.anims.play('right');
         
 
      
