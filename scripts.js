@@ -229,13 +229,22 @@ function update ()
         if (this.cursors.left.isDown)
         {
             player.setVelocityX(-500);
-
+            if (this.cursors.up.isDown) {
+                player.setVelocityY(-500);
+            } else if  (this.cursors.down.isDown) {
+                player.setVelocityY(500);
+            }
             player.anims.play('left', true);
         }
 
         else if (this.cursors.right.isDown)
         {
             player.setVelocityX(500);
+            if (this.cursors.up.isDown) {
+                player.setVelocityY(-500);
+            } else if  (this.cursors.down.isDown) {
+                player.setVelocityY(500);
+            }
 
             player.anims.play('right', true);
         }
@@ -244,7 +253,14 @@ function update ()
         {
             player.setVelocityY(-500);
 
-            player.anims.play('idle', true);
+            player.anims.play('left', true);
+        }
+
+        else if (this.cursors.up.isDown)
+        {
+            player.setVelocityY(-500);
+            
+            player.anims.play('left', true);
         }
 
         else if (this.cursors.down.isDown)
@@ -258,10 +274,12 @@ function update ()
             player.anims.play('idle', true);
         }
 
-        
 
+    
         info.setText('Berries: ' + berries);
 
+        //sprite.x = Phaser.Math.Clamp(sprite.x, 0, 3840-sprite.width);
+        //sprite.y = Phaser.Math.Clamp(sprite.y, 0, 2160-sprite.height);
     }
 
 
