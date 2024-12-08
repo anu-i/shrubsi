@@ -54,6 +54,7 @@ function init ()
 
 function preload ()
     {
+        this.add.tileSprite(400, 300, 696, 256, 'girl');
         this.load.image('bg', 'bg.jpg');
         // this.load.image('block', 'maintest.png');
         this.load.image('food', 'food.png');
@@ -62,8 +63,8 @@ function preload ()
         this.load.image('test', 'test.png');
         this.load.image('test2', 'test2.png');
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
-        this.load.spritesheet('girl', 'reworked/Sprites/idle.png', { frameWidth: 64, frameHeight: 127 });
-        this.load.spritesheet('girlrun', 'reworked/Sprites/run.png', { frameWidth: 64, frameHeight: 127 });
+        // this.load.spritesheet('girl', 'reworked/Sprites/idle.png', { frameWidth: 64, frameHeight: 127 });
+        this.load.spritesheet('girl', 'reworked/Sprites/run.png', { frameWidth: 64, frameHeight: 127 });
         this.load.audio('theme', ['theme.wav']);
     }
 
@@ -87,17 +88,17 @@ function create ()
         });
         
                // bushels
-               test = this.physics.add.staticGroup();
+            //    test = this.physics.add.staticGroup();
 
-               test.create(0, 0, 'test').setScale(10).refreshBody();
-               test.create(0, 0, 'test2').setScale(17).refreshBody();
-               test.create(3800, 0, 'test2').setScale(12).refreshBody();
-               test.create(0, 2100, 'test').setScale(10).refreshBody();
+            //    test.create(0, 0, 'test').setScale(10).refreshBody();
+            //    test.create(0, 0, 'test2').setScale(17).refreshBody();
+            //    test.create(3800, 0, 'test2').setScale(12).refreshBody();
+            //    test.create(0, 2100, 'test').setScale(10).refreshBody();
         
 
         //  Set the camera and physics bounds to be the size of 4x4 bg images
         this.cameras.main.setBounds(0, 0, 1920 * 2, 1080 * 2);
-        this.physics.world.setBounds(0, 0, 1920 * 2, 1080 * 2);
+        this.physics.world.setBounds(80, 60, (1920 * 2)-160, (1080 * 2)-120);
 
         //  Mash 4 images together to create our background
         this.add.image(0, 0, 'bg').setOrigin(0);
@@ -125,20 +126,32 @@ function create ()
  
         this.anims.create({
             key: 'idle',
-            frames: this.anims.generateFrameNumbers('girl', { start: 1, end: 12 }),
+            frames: this.anims.generateFrameNumbers('girl', { start: 0, end: 11 }),
             frameRate: 8,
-            repeat: -1
+            // repeat: -1
          });
-         player.anims.play('idle');
+        
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('girlrun', { start: 1, end: 14 }),
-            frameRate: 8,
+            frames: this.anims.generateFrameNumbers('girl', { start: 15, end: 27 }),
+            frameRate: 20,
             repeat: -1
          });
-         player.anims.play('right');
+
+         this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('girl', { start: 29, end: 36 }),
+            frameRate: 20,
+            repeat: -1
+         });
+
+         
+         
+
+         this.cursors = this.input.keyboard.createCursorKeys();
         
+         const keys = ['idle', 'right']
 
      
         this.cameras.main.startFollow(player, true, 0.05, 0.05);
@@ -204,31 +217,51 @@ function create ()
     
 function update ()
     {
+        const cursors = this.input.keyboard.createCursorKeys();
+
+        
+
         player.setVelocity(0);
+     
+        
+    
 
         if (this.cursors.left.isDown)
         {
             player.setVelocityX(-500);
+
+            player.anims.play('left', true);
         }
+
         else if (this.cursors.right.isDown)
         {
             player.setVelocityX(500);
+
+            player.anims.play('right', true);
         }
 
-        if (this.cursors.up.isDown)
+        else if (this.cursors.up.isDown)
         {
             player.setVelocityY(-500);
+
+            player.anims.play('idle', true);
         }
+
         else if (this.cursors.down.isDown)
         {
             player.setVelocityY(500);
-            // player.anims.play('down');
+
+            player.anims.play('idle', true);
         }
+
+        else {
+            player.anims.play('idle', true);
+        }
+
+        
 
         info.setText('Berries: ' + berries);
 
-        //sprite.x = Phaser.Math.Clamp(sprite.x, 0, 3840-sprite.width);
-        //sprite.y = Phaser.Math.Clamp(sprite.y, 0, 2160-sprite.height);
     }
 
 
