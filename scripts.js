@@ -56,14 +56,11 @@ function preload ()
     {
         this.add.tileSprite(400, 300, 696, 256, 'girl');
         this.load.image('bg', 'bg.jpg');
-        // this.load.image('block', 'maintest.png');
         this.load.image('food', 'food.png');
         this.load.image('poison', 'poison.png');
         this.load.image('bushels', 'bushels.png');
-        this.load.image('test', 'test.png');
-        this.load.image('test2', 'test2.png');
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
-        // this.load.spritesheet('girl', 'reworked/Sprites/idle.png', { frameWidth: 64, frameHeight: 127 });
+        this.load.spritesheet('load', 'reworked/Sprites/load.png', { frameWidth: 51, frameHeight: 45 }); 
         this.load.spritesheet('girl', 'reworked/Sprites/run.png', { frameWidth: 64, frameHeight: 127 });
         this.load.audio('theme', ['theme.wav']);
     }
@@ -86,14 +83,19 @@ function create ()
             families: [ 'Inconsolata' ]
         }
         });
-        
-               // bushels
-            //    test = this.physics.add.staticGroup();
 
-            //    test.create(0, 0, 'test').setScale(10).refreshBody();
-            //    test.create(0, 0, 'test2').setScale(17).refreshBody();
-            //    test.create(3800, 0, 'test2').setScale(12).refreshBody();
-            //    test.create(0, 2100, 'test').setScale(10).refreshBody();
+        // loading screen
+
+        const config = {
+            key: 'load',
+            frames: this.anims.generateFrameNumbers('load', { start: 0, end: 27, first: 7 }),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        this.anims.create(config);
+
+        this.add.sprite(400, 300, 'load').play('load');
         
 
         //  Set the camera and physics bounds to be the size of 4x4 bg images
@@ -112,15 +114,16 @@ function create ()
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
- 
+        
+
 
         // player
         
-
         player = this.physics.add.sprite(400, 300, 'girl');
-        // player.setScale(3);
 
         player.setCollideWorldBounds(true);
+
+
 
         // player animation
  
@@ -134,26 +137,35 @@ function create ()
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('girl', { start: 15, end: 27 }),
+            frames: this.anims.generateFrameNumbers('girl', { start: 12, end: 23 }),
             frameRate: 20,
             repeat: -1
          });
 
-         this.anims.create({
+        this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('girl', { start: 29, end: 36 }),
+            frames: this.anims.generateFrameNumbers('girl', { start: 24, end: 35 }),
             frameRate: 20,
             repeat: -1
          });
 
+        this.anims.create({
+            key: 'down',
+            frames: this.anims.generateFrameNumbers('girl', { start: 36, end: 47 }),
+            frameRate: 8,
+            repeat: -1
+         }); 
          
+        this.anims.create({
+            key: 'up',
+            frames: this.anims.generateFrameNumbers('girl', { start: 48, end: 59 }),
+            frameRate: 8,
+            repeat: -1
+         });
          
 
-         this.cursors = this.input.keyboard.createCursorKeys();
-        
-         const keys = ['idle', 'right']
+        this.cursors = this.input.keyboard.createCursorKeys();
 
-     
         this.cameras.main.startFollow(player, true, 0.05, 0.05);
         
 
@@ -161,8 +173,6 @@ function create ()
         info = this.add.text(10, 10, '', { fontFamily: 'Inconsolata', fontSize:42, color: '#000000' });
 
         info.setDepth(2);
-
-        // timer = this.time.addEvent({ delay: 10000, callback: this.gameOver, callbackScope: this });
     
         berries = 0;
 
@@ -253,21 +263,21 @@ function update ()
         {
             player.setVelocityY(-500);
 
-            player.anims.play('left', true);
+            player.anims.play('up', true);
         }
 
         else if (this.cursors.up.isDown)
         {
             player.setVelocityY(-500);
-            
-            player.anims.play('left', true);
+
+            player.anims.play('up', true);
         }
 
         else if (this.cursors.down.isDown)
         {
             player.setVelocityY(500);
 
-            player.anims.play('idle', true);
+            player.anims.play('down', true);
         }
 
         else {
@@ -278,8 +288,7 @@ function update ()
     
         info.setText('Berries: ' + berries);
 
-        //sprite.x = Phaser.Math.Clamp(sprite.x, 0, 3840-sprite.width);
-        //sprite.y = Phaser.Math.Clamp(sprite.y, 0, 2160-sprite.height);
+        
     }
 
 
@@ -307,9 +316,7 @@ function collectFood (player, food)
 
 
         var poison = poisonGroup.create(x, y, 'poison');
-        // poisonGroup.setBounce(1);
-        // poisonGroup.setCollideWorldBounds(true);
-        // poisonGroup.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        
 
     }
   
@@ -321,7 +328,7 @@ function collectPoison (player, poison)
 
     player.setTint(0xff0000);
 
-    // player.anims.play('turn');
+    player.anims.play('idle');
 
     gameOver = true;
 }
