@@ -45,7 +45,7 @@ function init ()
 
         var sheet = element.sheet;
 
-        var styles = '@font-face { font-family: "inconsolata"; src: url("assets/Inconsolata/static/Inconsolata/Inconsolata-SemiBold.ttf") format("opentype"); }\n';
+        var styles = '@font-face { font-family: "Kumar One"; src: url("assets/Kumar_One/static/Kumar_One/KumarOne-Regular.ttf") format("opentype"); }\n';
 
         sheet.insertRule(styles, 0);
     }
@@ -54,15 +54,24 @@ function init ()
 
 function preload ()
     {
-        this.add.tileSprite(400, 300, 696, 256, 'girl');
+            // Display loading progress (optional)
+                 var loadingText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Loading: 0%', {
+                 font: '20px Cutive Mono',
+                 fill: '#ffffff'
+                 }).setOrigin(0.5);
+
+                 this.load.on('progress', (progress) => {
+                 loadingText.setText('Loading: ' + Math.round(progress * 100) + '%');
+                 });
+
         this.load.image('bg', 'bg.jpg');
         this.load.image('food', 'food.png');
         this.load.image('poison', 'poison.png');
         this.load.image('bushels', 'bushels.png');
-        this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
-        this.load.spritesheet('load', 'reworked/Sprites/load.png', { frameWidth: 51, frameHeight: 45 }); 
+        this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js') 
         this.load.spritesheet('girl', 'reworked/Sprites/run.png', { frameWidth: 64, frameHeight: 127 });
         this.load.audio('theme', ['theme.wav']);
+
     }
 
 function create ()
@@ -84,18 +93,7 @@ function create ()
         }
         });
 
-        // loading screen
-
-        const config = {
-            key: 'load',
-            frames: this.anims.generateFrameNumbers('load', { start: 0, end: 27, first: 7 }),
-            frameRate: 8,
-            repeat: -1
-        };
-
-        this.anims.create(config);
-
-        this.add.sprite(400, 300, 'load').play('load');
+        
         
 
         //  Set the camera and physics bounds to be the size of 4x4 bg images
@@ -170,7 +168,7 @@ function create ()
         
 
         // Display the game stats
-        info = this.add.text(10, 10, '', { fontFamily: 'Inconsolata', fontSize:42, color: '#000000' });
+        info = this.add.text(10, 10, '', { fontFamily: 'Kumar One', fontSize:32, color: '#000000' });
 
         info.setDepth(2);
     
