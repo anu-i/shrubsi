@@ -18,7 +18,7 @@ body {
 	overflow: hidden;
 	display: inline-block;
 	height: auto;  /* Make the height fit the content */
-	margin: 20px;
+	margin: 2px;
   }
   
   /* Apply the typewriter effect to each line */
@@ -26,7 +26,7 @@ body {
 	display: block; /* Ensure each line is block-level */
 	overflow: hidden; /* Hide text that isn't displayed yet */
 	white-space: nowrap; /* Prevent the text from wrapping */
-	border-right: 3px solid #000; /* Simulate the typing cursor */
+	border-right: 3px solid rgb(252, 11, 11); /* Simulate the typing cursor */
 	padding-right: 5px; /* Space between text and cursor */
 	width: 0; /* Start with 0 width */
 	animation: typing 2s steps(40) forwards, blink 0.75s step-end infinite;
@@ -35,8 +35,9 @@ body {
 	border-radius: 1em;
 	border-color: rgb(255, 0, 115);
 	color: azure;
-	margin-top: 1px;
-	margin-bottom: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
 	padding: .5px;
 	font-family: 'Cutive Mono', monospace;
 	line-height: 1; /* Reduce line height */
