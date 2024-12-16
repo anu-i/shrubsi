@@ -15,10 +15,10 @@ body {
   
   /* Container to hold the lines */
   .typewriter-container {
-	overflow: hidden;
+	overflow: visible;
 	display: inline-block;
 	height: auto;  /* Make the height fit the content */
-	margin: 2px;
+	margin: 2px; width: auto;
   }
   
   /* Apply the typewriter effect to each line */
